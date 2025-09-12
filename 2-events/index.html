@@ -19,7 +19,28 @@
             <div class="col-4 offset-4">
                 <h3 class="text-center">Event</h3>
            <!-- <input v-on:input="" type="text" class="form-control">  -->
-                <input @input="updateValue" type="text" class="form-control">
+
+                <!--
+                <input 
+                @input=" fullName = $event.target.value "
+                type="text" 
+                class="form-control" 
+                :value="fullName"> -->   <!-- value="Pogaca Lari" yazarsak varsayılan değer olarak çıkar  -->
+
+                <!--  
+
+                v-xx -> gibi bir şey geliyorsa direktifdir
+                v-on -> eventi bağlamamızı event in şeklini değiştirmemizi yani nasıl bağlancağını 
+                v-bind -> etribüt değerinin nerden gelceğini söyler
+                v-modal -> data içerisndeki bir değer ile çalışan bir yapı
+                -->
+
+                <input  
+                v-modal = "fullName"
+                type="text" 
+                class="form-control" >    <!--  @input=" fullName = $event.target.value " ve   :value="fullName"  sildik çünkü v-modal bu iki işlemi otamatik olarak bizim için yapıyor -->
+
+                {{fullName }}
                 <br>
                 <button class="btn btn-primary btn-sm">Ekle</button>
             </div>
