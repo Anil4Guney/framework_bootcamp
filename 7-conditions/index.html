@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
+    crossorigin="anonymous">
+    
+</head>
+<body>
+    
+    <div id="app">
+        <div class="container">
+            <div class="row">
+                <div class="col-8 offset-2 p-2">
+                        <button 
+                        class="btn btn-sm btn-primary" 
+                        @class="showContainer = !showContainer">Aç / Kapat</button>
+
+                        <h1 v-if="!showContainer" class="text-danger">Başlangıçta Gözükecek</h1>
+                        <h1 v-else class="text-primary">Sonra  Gözükecek</h1>  <!-- v-if="showContainer" yerine v-else yazsakta o şartı sağlar -->
+                        <hr>
+
+                        <h3 :class="counterBoxClass">{{ counter }}</h3>
+                        <!-- { 'bg-success text-white' : counter &gt; 0, 'bg-danger text-white' : counter &lt; 0, } yazabiliriz :class içine      &gt = >  , &lt; = < demek -->
+                        <button class="btn btn-sm btn-success" @click="counter++"> Artır</button>
+                        <button class="btn btn-sm btn-danger" @click="counter--"> Azalt</button>
+                        <p v-if="counter &lt; 0">Counter Negatif</p>
+                        <p v-else-if="counter &gt; 0">Counter Pozitif</p>
+                        <p v-else="counter === 0">Counter 0</p>
+
+                        <hr>
+                        <!-- görünüşte aşağıdaki ile yukarıdaki aynı am console de değişiklikler farklı oluyor -->
+
+                        <p v-show="counter &lt; 0 ">Counter Negatif</p>
+                        <p v-show="counter &gt; 0">Counter Pozitif</p>
+                        <p v-show="counter === 0">Counter 0</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

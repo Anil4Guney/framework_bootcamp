@@ -12,7 +12,18 @@
 <body>
 
     <div id="app">
-        <div class="box border red"></div>
+        <input type="text" v-modal="bgColor">
+        <button @click="showBorder = !showBorder">Border Ekle/Ekleme</button>
+        <button @click="redBG = !redBG">Kırmızı BG  yap</button>
+        <div 
+        class="box"
+         :class="boxClass" 
+         :style="{ backgroundColor : bgColor} ">
+         <!-- :style="[ {}, {} ]" şeklindede yazılabilir  -->
+        
+        </div>  <!-- showBorder'ımın değeri true ise border ekle yaptık aşağıdaki yorum satırı için olan açıklama bu. --> 
+        <!-- :class="{ border : showBorder, red : redBG }"  yazıp uzun yazmak yerine bunu yaptık ve js de computed oluşturduk-->
+
     </div>
 
 
