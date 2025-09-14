@@ -1,8 +1,13 @@
 const app = Vue.createApp({ 
     data(){
         return{
-            itemList : [ "Todo1", "Todo2", "Todo3" , "Todo4" ],
+            todoList : [ "Todo1", "Todo2", "Todo3" , "Todo4" ],
         };
     },
-
+    methods : {
+        addTodo(event){
+            this.todoList.push($event.target.value);
+            event.target.value = "";
+        },    
+    },
 }).mount("#app");

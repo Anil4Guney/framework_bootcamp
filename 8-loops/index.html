@@ -20,10 +20,16 @@
             <div class="row">
                 <div class="col-8 offset-2 p-2">
                     <h3 class="text-center">Todo List</h3>
+                    <div class="d-flex justify-content-start mb-4">   
+                        <input type="" class="form-control me-2 " @keydown.enter="addTodo">  <!--  @keydown.enter="todoList.push($event.target.value)" yazarsak entere basınca ekleme yapar. 
+                                                                                             böyle yaptıkkı js de yazdığımızla birlikte daha sonra eklemek için yazdığımız yerin 
+                                                                                             değerini sıfırlamak için-->
+                        <button class="btn btn-sm btn-primary">Ekle</button>
+                    </div>
+
                     <ul class="list-group">
-                        <li class="list-group-item">Todo 1</li>
-                        <li class="list-group-item">Todo 2</li>
-                        <li class="list-group-item">Todo 3</li>
+                        <li v-for="todo in todoList" class="list-group-item">{{ todo }}</li>
+
                     </ul>
                 </div>
             </div>
