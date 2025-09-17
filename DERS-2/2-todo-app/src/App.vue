@@ -8,7 +8,7 @@
     <input @keydown.enter="addNewTodo" type="text" id="todoText" placeholder="Bir şeyler yazınız..."/>
     -->
 
-    <AddSection @add-todo="addNewTodo" />
+    <AddSection :addNewTodo="addNewTodo" @add-todo="addNewTodo" />
 
     <!-- Aynı şeyi bunada yapıyoruz
     <ul>
@@ -22,39 +22,47 @@
     </ul>
     -->  
 
-    <TodoList  @delete-tod0-item="deleteItem" :myData=" todoList " />
+    <!--   <TodoList  @delete-tod0-item="deleteItem" :myData=" todoList " />      --> 
 
     <!-- BUNDADA AYNI İŞLEM
     <small class="mt-2 d-felx justify-content-end  green"> {{ todoList.length }} adet todo vardır</small>
     -->
-    <ResultBar :itemCount="todoList.length" />
+    <!--        <ResultBar :itemCount="todoList.length" />   --> 
+
+    <!--   <TodoList  @delete-tod0-item="deleteItem" :myData=" todoList " />    ve    <ResultBar :itemCount="todoList.length" />    <ListSection />  içine koyduk-->
+
+    <ListSection />
+
+
 
   </div>
 </template>
 
 <script>
 import AddSection from "@/components/AddSection";
-import TodoList from "@/components/TodoList";
-import ResultBar from "@/components/ResultBar";
+//import TodoList from "@/components/TodoList";     // Bunları burdan kesip ListSection içine alıyorurz.
+//import ResultBar from "@/components/ResultBar";   // // Bunları burdan kesip ListSection içine alıyorurz.  
+import ListSection from "@/components/ListSection";
 export default {
   components: {
     AddSection,
-    TodoList,
-    ResultBar
+    ListSection
+//    TodoList,        Bunları burdan kesip ListSection içine alıyorurz.
+//    ResultBar
   },
 
   created() {
-    setTimeout(() => {
-      this.todoList = [
-        { id : 1, text : "Bootcamp #2"},
-        { id : 2, text : "Bootcamp #2.1"},
-        { id : 3, text : "Bootcamp #2.2"},
-        { id : 4, text : "Bootcamp #2.3"},
-        { id : 5, text : "Bootcamp #2.4"},
-        { id : 6, text : "Bootcamp #2.5"},
+ //   setTimeout(() => {
+   //   this.todoList = [
+     //   { id : 1, text : "Bootcamp #2"},
+     //   { id : 2, text : "Bootcamp #2.1"},
+     //   { id : 3, text : "Bootcamp #2.2"},
+     //   { id : 4, text : "Bootcamp #2.3"},
+     //   { id : 5, text : "Bootcamp #2.4"},
+     //   { id : 6, text : "Bootcamp #2.5"},
 
-      ];
-    }, 2000);
+  //    ];
+ //   }, 2000);
 
   },
 
@@ -62,28 +70,42 @@ export default {
   // BUNU TodoList içinede alabiliriz 
   data(){
     return{
-      todoList : [
-       // { id : 1, text : "Bootcamp #2"},
-       // { id : 2, text : "Bootcamp #2.1"},
-       // { id : 3, text : "Bootcamp #2.2"},
-       // { id : 4, text : "Bootcamp #2.3"},
-       // { id : 5, text : "Bootcamp #2.4"},
-       // { id : 6, text : "Bootcamp #2.5"},
-      ],
+      provideData : {
+        todoList : [
+          { id : 1, text : "Bootcamp #2"},
+          { id : 2, text : "Bootcamp #2.1"},
+          { id : 3, text : "Bootcamp #2.2"},
+          { id : 4, text : "Bootcamp #2.3"},
+          { id : 5, text : "Bootcamp #2.4"},
+          { id : 6, text : "Bootcamp #2.5"},
+        ]
+      }
+
     };
   },
+
+
+  provide () {
+    return {
+      provideData : this.provideData,
+      deleteItem : this.deleteItem
+    };
+  },
+
+
+
   methods : {
     testEvent(data){
       alert(data);
     },
     deleteItem(todoItem){
-    this.todoList = this.todoList.filter((t) => t != todoItem);  // BUNUN DAHA UZUN BAŞKA VERSİYONU ŞÖYLE ;
+    this.provideData.todoList = this.provideData.todoList.filter((t) => t != todoItem);  // BUNUN DAHA UZUN BAŞKA VERSİYONU ŞÖYLE ;
       // const matchedIndex = this.todoList.findIndex(i => == todoItem);
       // if(matchedIndex > -1){
       //    this.todoList.splice(this.todoList[matchedIndex], 1);
     },
     addNewTodo(todo){
-        this.todoList.push({
+        this.provideData.todoList.push({
           id : new Date().getTime(),
           text : todo
       });

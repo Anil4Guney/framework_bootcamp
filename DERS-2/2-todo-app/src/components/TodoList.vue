@@ -20,7 +20,7 @@
     -->
 
 
-    <TodoListItem @delete-tod0-item="$emit('delete-tod0-item', $event)" v-for="todoItem in myData" :key="todoItem.id" :item="todoItem"/>
+    <TodoListItem  v-for="todoItem in provideData.todoList" :key="todoItem.id" :item="todoItem"/>
 
     </ul>
 </template>
@@ -29,7 +29,8 @@
 
     import TodoListItem from "@/components/TodoListItem"
     export default {
-        props : ["myData"],
+      //  props : ["myData"],
+      inject : [ "provideData" ],
            // props : {
            //     myData :  {
            //         type: String,
