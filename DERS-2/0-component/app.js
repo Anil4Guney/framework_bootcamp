@@ -19,6 +19,6 @@ app.component("counter-item",{
         <button @click="counter--" class="red sm">-</button>
         <button @click="counter++" class="green sm">+</button>
       </div>
-  `
+  `,
 });
 app.mount("#app");
