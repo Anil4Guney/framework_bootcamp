@@ -8,7 +8,7 @@
     <input @keydown.enter="addNewTodo" type="text" id="todoText" placeholder="Bir şeyler yazınız..."/>
     -->
 
-    <AddSection/>
+    <AddSection @add-todo="addNewTodo" />
 
     <!-- Aynı şeyi bunada yapıyoruz
     <ul>
@@ -22,12 +22,12 @@
     </ul>
     -->  
 
-    <TodoList/>
+    <TodoList  @delete-tod0-item="deleteItem" :myData=" todoList " />
 
     <!-- BUNDADA AYNI İŞLEM
     <small class="mt-2 d-felx justify-content-end  green"> {{ todoList.length }} adet todo vardır</small>
     -->
-    <ResultBar/>
+    <ResultBar :itemCount="todoList.length" />
 
   </div>
 </template>
@@ -73,21 +73,22 @@ export default {
     };
   },
   methods : {
+    testEvent(data){
+      alert(data);
+    },
     deleteItem(todoItem){
-      this.todoList = this.todoList.filter((t) => t != todoItem);  // BUNUN DAHA UZUN BAŞKA VERSİYONU ŞÖYLE ;
+    this.todoList = this.todoList.filter((t) => t != todoItem);  // BUNUN DAHA UZUN BAŞKA VERSİYONU ŞÖYLE ;
       // const matchedIndex = this.todoList.findIndex(i => == todoItem);
       // if(matchedIndex > -1){
       //    this.todoList.splice(this.todoList[matchedIndex], 1);
     },
-  },
-  addNewTodo(){
-    this.todoList.push({
-      id : new Date().getTime(),
-      text : event.target.value
-    });
-    event.target.value = '';
-
-  },
+    addNewTodo(todo){
+        this.todoList.push({
+          id : new Date().getTime(),
+          text : todo
+      });
+    },
+  }  
 };
 
 </script>

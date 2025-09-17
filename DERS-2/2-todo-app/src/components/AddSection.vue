@@ -1,4 +1,26 @@
 <template>
     <label for="todoText"></label>
-    <input @keydown.enter="addNewTodo" type="text" id="todoText" placeholder="Bir şeyler yazınız..."/>
-</template>
+    <input v-model="todoText" @keydown.enter="addNewTodo" type="text" id="todoText" placeholder="Bir şeyler yazınız..."/>  
+    <!-- <input  type="text" id="todoText" placeholder="Bir şeyler yazınız..."/> -->
+    <!--  <button class="green " @click="sendData">Gönder</button> -->
+    </template>
+
+
+<script>
+
+export default {
+    data(){
+        return {
+            todoText : null
+        };
+    },
+    methods : {
+        addNewTodo(){ 
+            // bu component in import edildiği componente parent ıma bir bilgi atıyorum bunuda şöyle yaparız.
+            this.$emit("add-todo", this.todoText);
+            this.todoText = null; 
+        }
+    }
+};
+
+</script>

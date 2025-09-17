@@ -19,7 +19,8 @@
 
     -->
 
-    <TodoListItem v-for="i in 10" :key="i"/>
+
+    <TodoListItem @delete-tod0-item="$emit('delete-tod0-item', $event)" v-for="todoItem in myData" :key="todoItem.id" :item="todoItem"/>
 
     </ul>
 </template>
@@ -28,9 +29,25 @@
 
     import TodoListItem from "@/components/TodoListItem"
     export default {
+        props : ["myData"],
+           // props : {
+           //     myData :  {
+           //         type: String,
+           //         required: false,
+           //         default : "",
+           //     }
+        //};
+
+       // data(){
+       //     return {
+       //         myData : ""
+       // 
+       //     };
+       //},
+
         components : {
             TodoListItem
-        },
+        }
     };
 
 </script>
