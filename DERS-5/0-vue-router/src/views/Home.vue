@@ -16,6 +16,10 @@
                     name : "DetailPage",
                     params : {
                         userID : event.target.value // bunun sayfasınde details sayfasındaki başlık yeni yazdığımız şeyle değişir
+                    },
+                    query : {
+                        type : "DetailAuth",
+                        user : "tayfunerbilen"
                     }
                 });
             }
