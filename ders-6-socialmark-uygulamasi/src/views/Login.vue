@@ -27,14 +27,13 @@ export default {
   methods: {
     onSubmit(){
       // GET /posts?title=json-server&author=typicode
-      const password = CryptoJS.AES.encrypt(this.userData.password, this.$store.getters._saltKey).toString();
-      console.log("password :>> ", this.$store.getters._saltKey ,this.userData.password, password);
-        return false;
+      const password = CryptoJS.HmacSHA1(this.userData.password, this.$store.getters._saltKey).toString();
+      console.log("password :>> ",  password);
 
-      //this.$appAxios.get(`/users?username= ${this.userData.username}&password=${password}`).then(login_response => {
-      //  console.log(login_response);
-      //})
-      //.catch(e => console.log(e))
+      this.$appAxios.get(`/user?username= ${this.userData.username}&password=${password}`).then(login_response => {
+        console.log(login_response);
+      })
+      .catch(e => console.log(e))
       //.finally(() => this.loader = false)
     }
   }
