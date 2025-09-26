@@ -28,7 +28,7 @@ export default {
       const password = CryptoJS.HmacSHA1(this.userData.password, this.$store.getters._saltKey).toString();
       this.$appAxios
         .get(`/users?username=${this.userData.username}&password=${password}`)
-        .then(login_response => {
+        .then(login_response => { 
           if (login_response?.data?.length > 0) {
             this.$store.commit("setUser", login_response?.data[0]);
             this.$router.push({ name: "HomePage" });
