@@ -39,6 +39,11 @@
       "userId": 1,
       "bookmarkId": 9,
       "id": 6
+    },
+    {
+      "id": "0fc5",
+      "userId": "7720",
+      "bookmarkId": 15
     }
   ],
   "user_bookmarks": [
@@ -65,7 +70,7 @@
       "categoryId": 1,
       "description": "Dünyanın en güzel framework'ü",
       "userId": 1,
-      "created_at": "2021-08-26T18:57:24.821Z",
+      "created_at": "2025-09-26T18:57:24.821Z",
       "id": 1
     },
     {

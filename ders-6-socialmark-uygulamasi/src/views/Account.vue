@@ -11,6 +11,7 @@
 
 <script>
 import sideBar from "@/components/Account/sideBar";
+import io from "socket.io-client";
 
 export default {
   components: {
@@ -26,6 +27,9 @@ export default {
       console.log("bookmark_list_response :>> ", bookmark_list_response);
       this.bookmarkList = bookmark_list_response?.data || [];
     });
+  },
+  methods(){
+    this.socket = io("http://localhost:2018")
   }
 };
 </script>
