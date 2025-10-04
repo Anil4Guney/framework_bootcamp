@@ -1,11 +1,35 @@
 <script setup>
-import Todos from "./components/Todos.vue";
-import Users from "./components/Users.vue";
+import { defineAsyncComponent, onErrorCaptured, ref } from "vue";
+//import Todos from "./components/Todos.vue";
+const err = ref(null);
+const Todos = defineAsyncComponent(() => import("./components/Todos.vue"));
+onErrorCaptured((e) => {
+  err.value = e;
+  return true;
+});
+//import Users from "./components/Users.vue";
 
 
 </script>
 
 <template>
-  <Todos/>
-  <Users/>
+  <span v-if="err" class="error"> {{ err }}</span>
+  <suspense v-else>
+    <template #default>
+      <Todos/>
+    </template>
+    <template #fallback>
+      <div>Loading...</div>
+    </template>
+  </suspense>
+ <!-- <Users/> -->
+ <!-- <hr /> -->
+  
 </template>
+
+
+<style scoped>
+
+.error{color: red; font-size: 20px;}
+
+</style>
