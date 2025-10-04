@@ -2,14 +2,14 @@
 import { ref } from 'vue';
 
 const todoList = ref([]);
-const isLoad = ref(false);
+// const isLoad = ref(false);
 
 
   fetch('https://jsonplaceholder.typicode.com/todos/1')
       .then(response => response.json())
       .then(json => {
         todoList.value = json;
-        isLoad.value = true;
+        //isLoad.value = true;
       });
 
 
@@ -17,10 +17,11 @@ const isLoad = ref(false);
 
 <template>
     <h3>Todos</h3>
-    <ul v-if="isLoad">
+    <ul>
+    <!--<ul v-if="isLoad">-->
         <li v-for="todo in todoList" :key="todo.id">
             {{ todo.title }}
         </li>
     </ul>
-    <span v-else>Loading...</span>
+    <!--<span v-else>Loading...</span>-->
 </template>

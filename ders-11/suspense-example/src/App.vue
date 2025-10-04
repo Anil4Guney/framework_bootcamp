@@ -3,6 +3,7 @@ import { defineAsyncComponent, onErrorCaptured, ref } from "vue";
 //import Todos from "./components/Todos.vue";
 const err = ref(null);
 const Todos = defineAsyncComponent(() => import("./components/Todos.vue"));
+const Users = defineAsyncComponent(() => import("./components/Users.vue"));
 onErrorCaptured((e) => {
   err.value = e;
   return true;
@@ -16,7 +17,11 @@ onErrorCaptured((e) => {
   <span v-if="err" class="error"> {{ err }}</span>
   <suspense v-else>
     <template #default>
-      <Todos/>
+      <div>
+        <Users/>
+        <hr/>
+        <Todos/>
+      </div>
     </template>
     <template #fallback>
       <div>Loading...</div>
